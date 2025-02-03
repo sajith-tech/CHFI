@@ -29,13 +29,13 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
    
 2. **Create a VHD**:
    - Click `Action > Create VHD` from the top menu.
-
-![Disk Management 2_3_2025 10_35_20 AM](https://github.com/user-attachments/assets/da784df4-2631-424c-9595-d6152a3176e0)
-
    - Choose a location to save the VHD file (e.g., `C:\ForensicLab\TestDisk.vhd`).
    - Specify a size (e.g., 1 GB).
    - Select **Fixed size** for better performance.
    - Click `OK` to create the VHD.
+
+
+![Disk Management 2_3_2025 10_36_09 AM](https://github.com/user-attachments/assets/43acfd01-962f-490c-881e-4fc0a1e51994)
 
 
 3. **Initialize the Disk**:
