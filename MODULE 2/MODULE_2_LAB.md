@@ -51,6 +51,9 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
    - Follow the wizard to format the disk with **NTFS** and assign a drive letter.
 
 
+![Disk Management 2_3_2025 10_42_16 AM](https://github.com/user-attachments/assets/8b8b78b6-d885-4424-b9a2-cce1183d8ec0)
+
+
 
 ---
 
