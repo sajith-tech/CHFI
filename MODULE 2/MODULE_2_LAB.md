@@ -22,7 +22,10 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
 ### Step 1: Create a Virtual Hard Disk (VHD)
 1. **Open Disk Management**:
    - Press `Win + R`, type `diskmgmt.msc`, and press Enter.
-   - 
+
+   
+ ![Screenshot 2025-02-03 114829](https://github.com/user-attachments/assets/45f6df87-ab30-4fbd-9175-274bdf470ba3)
+
    
 2. **Create a VHD**:
    - Click `Action > Create VHD` from the top menu.
