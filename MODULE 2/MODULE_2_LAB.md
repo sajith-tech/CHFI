@@ -45,14 +45,15 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
 
 ![Disk Management 2_3_2025 10_41_24 AM](https://github.com/user-attachments/assets/1933f0a1-4ee7-464f-b320-655c0d5f937e)
 
+![Disk Management 2_3_2025 10_42_16 AM](https://github.com/user-attachments/assets/8b8b78b6-d885-4424-b9a2-cce1183d8ec0)
+
 
 4. **Create a Partition**:
    - Right-click the unallocated space on the VHD and choose `New Simple Volume`.
    - Follow the wizard to format the disk with **NTFS** and assign a drive letter.
 
 
-![Disk Management 2_3_2025 10_42_16 AM](https://github.com/user-attachments/assets/8b8b78b6-d885-4424-b9a2-cce1183d8ec0)
-
+![Disk Management 2_3_2025 10_43_23 AM](https://github.com/user-attachments/assets/6c1499c8-c8ce-48b4-a5ed-6090c211bce3)
 
 
 ---
@@ -63,6 +64,8 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
 
 2. **Copy Files**:
    - Add various files (e.g., documents, images, videos) to the drive for testing.
+   
+![New Volume (D_) - File Explorer 2_3_2025 10_47_15 AM](https://github.com/user-attachments/assets/b56dbef4-e84f-41b7-9aa9-38ce212aac10)
 
 3. **Delete Some Files**:
    - Delete a few files and empty the Recycle Bin to simulate data loss.
