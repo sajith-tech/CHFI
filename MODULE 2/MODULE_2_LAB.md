@@ -77,11 +77,16 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
    - Download FTK Imager from the official website.
    - Install and launch the tool.
 
+![New Volume (D_) - File Explorer 2_3_2025 11_02_49 AM](https://github.com/user-attachments/assets/32c0de75-c0c8-494b-b5a8-3c7e808c6164)
+
+
 2. **Create an Image**:
    - Click `File > Create Disk Image`.
    - Select `Logical Drive` and click `Next`.
    - Choose the VHD drive (e.g., `E:\`) and click `Finish`.
    - Select a destination to save the image file (e.g., `C:\ForensicLab\VHD_Image.E01`).
+
+![FTK Imager 4 7 3 81 - Brave 2_3_2025 11_04_38 AM](https://github.com/user-attachments/assets/801dbb0d-29f8-48f2-a7de-125901eafe46)
 
 3. **Verify the Image**:
    - FTK Imager will calculate hash values (e.g., MD5, SHA-1) to verify the image integrity.
@@ -93,14 +98,28 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
    - Download Recuva from the official website.
    - Install and launch the tool.
 
+![Drive_Image Verify Results 2_3_2025 11_17_37 AM](https://github.com/user-attachments/assets/e7ee4b48-90cd-4c1a-8442-5532d0b12d7d)
+
+
 2. **Scan the VHD**:
    - Open Recuva and select the mounted VHD drive (e.g., `E:\`).
    - Choose **Deep Scan** for a thorough analysis.
    - Start the scan and wait for it to complete.
 
+![Drive_Image Verify Results 2_3_2025 11_21_06 AM](https://github.com/user-attachments/assets/56065880-f078-4deb-bdd8-819a38178bee)
+
+![Recuva Wizard 2_3_2025 11_21_16 AM](https://github.com/user-attachments/assets/342ff97c-ff16-4b32-b205-de126acd9d75)
+
+
 3. **Recover Files**:
    - Review the list of recoverable files.
    - Select the files you want to restore and choose a recovery location.
+
+![Recuva 2_3_2025 11_23_53 AM](https://github.com/user-attachments/assets/dcd4e748-2613-4dc9-82ef-5b1cde84106b)
+
+
+![Recuva 2_3_2025 11_25_15 AM](https://github.com/user-attachments/assets/8856d345-629a-4ed6-ae61-0891a54067fd)
+
 
 ---
 
