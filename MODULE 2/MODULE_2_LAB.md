@@ -43,9 +43,14 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
    - Right-click the disk and select `Initialize Disk`.
    - Choose **MBR** as the partition style and click `OK`.
 
+![Disk Management 2_3_2025 10_41_24 AM](https://github.com/user-attachments/assets/1933f0a1-4ee7-464f-b320-655c0d5f937e)
+
+
 4. **Create a Partition**:
    - Right-click the unallocated space on the VHD and choose `New Simple Volume`.
    - Follow the wizard to format the disk with **NTFS** and assign a drive letter.
+
+
 
 ---
 
