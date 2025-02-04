@@ -82,11 +82,11 @@ Simulate a forensic scenario by creating a hard disk file, adding data, and reco
 
 2. **Create an Image**:
    - Click `File > Create Disk Image`.
+     ![FTK Imager 4 7 3 81 - Brave 2_3_2025 11_04_38 AM](https://github.com/user-attachments/assets/801dbb0d-29f8-48f2-a7de-125901eafe46)
    - Select `Logical Drive` and click `Next`.
    - Choose the VHD drive (e.g., `E:\`) and click `Finish`.
    - Select a destination to save the image file (e.g., `C:\ForensicLab\VHD_Image.E01`).
 
-![FTK Imager 4 7 3 81 - Brave 2_3_2025 11_04_38 AM](https://github.com/user-attachments/assets/801dbb0d-29f8-48f2-a7de-125901eafe46)
 
 3. **Verify the Image**:
    - FTK Imager will calculate hash values (e.g., MD5, SHA-1) to verify the image integrity.
