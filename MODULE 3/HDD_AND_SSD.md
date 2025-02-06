@@ -1,4 +1,3 @@
-
 # Notes on HDD and SSD
 
 ## 1. Hard Disk Drive (HDD)
@@ -66,6 +65,44 @@ SSDs are storage devices that use flash memory to store data electronically.
 - Laptops, desktops, and high-performance servers.
 - Gaming systems and content creation setups.
 - Embedded systems and IoT devices.
+
+---
+
+## **Disk Interfaces**
+
+### **1. SATA (Serial ATA)**
+- Common interface for both HDDs and SSDs.
+- Transfer speeds up to 6 Gbps.
+- Easy to implement and cost-effective.
+
+### **2. SAS (Serial Attached SCSI)**
+- High-performance interface mostly used in enterprise environments.
+- Faster and more reliable than SATA.
+- Supports multiple devices on a single port.
+
+### **3. NVMe (Non-Volatile Memory Express)**
+- High-speed interface designed for SSDs.
+- Connected via PCIe lanes for low latency and high throughput.
+- Offers transfer speeds up to 32 Gbps.
+
+### **4. PCIe (Peripheral Component Interconnect Express)**
+- Direct connection to the motherboard.
+- Provides multiple lanes for faster data transfer.
+- Used for high-performance SSDs.
+
+### **5. USB (Universal Serial Bus)**
+- External storage interface for portable drives.
+- Common types include USB 3.0 and USB-C.
+- Transfer speeds up to 10 Gbps with USB 3.2 Gen 2.
+
+### **6. Thunderbolt**
+- High-speed interface developed by Intel.
+- Supports transfer speeds up to 40 Gbps.
+- Used for external SSDs and docking stations.
+
+### **7. IDE (Integrated Drive Electronics)**
+- Older interface standard for HDDs.
+- Slower and less common in modern systems.
 
 ---
 
