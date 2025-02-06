@@ -1,6 +1,3 @@
-
-
-```markdown
 # Practical Session: Analyze File System of Linux and Windows Evidence Image, Recover Deleted Files, and Analyze File Formats
 
 ## Objective:
@@ -32,7 +29,6 @@ The goal of this session is to help students understand how to analyze a forensi
    ```bash
    sudo apt-get update
    sudo apt-get install sleuthkit autopsy
-   ```
 
 ### Step 2: Mount the Evidence Image
 1. Create a mount point for the image:
@@ -180,4 +176,4 @@ The goal of this session is to help students understand how to analyze a forensi
 - Students should be familiar with tools like **Autopsy** and **Sleuth Kit**, as they are commonly used in forensic investigations.
 ```
 
-You can copy and save the above content in a `.md` file for your practical session.
+
