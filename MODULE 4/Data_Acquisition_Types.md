@@ -100,3 +100,65 @@ Choosing between live and dead acquisition depends on the nature and objectives 
 2. Eoghan Casey, "Handbook of Digital Forensics and Investigation."
 3. NIST Special Publication 800-86, "Guide to Integrating Forensic Techniques into Incident Response."
 
+
+
+## Data Acquisition Formats
+
+### Common Image Formats in Data Acquisition
+1. **RAW Format**
+   - Simple bit-by-bit copy of the original media.
+   - No compression or metadata.
+   - Tools: `dd`, FTK Imager.
+
+2. **Expert Witness Format (EWF)**
+   - Proprietary format developed by EnCase.
+   - Supports compression and metadata storage.
+   - File extensions: `.E01`, `.E02`, etc.
+
+3. **Advanced Forensic Format (AFF)**
+   - Open-source format.
+   - Supports compression, encryption, and metadata.
+   - File extensions: `.aff`, `.afm`, `.afd`.
+
+4. **Proprietary Formats**
+   - Created by specific tools like ProDiscover and SMART.
+
+### Characteristics of Data Acquisition Formats
+| **Format** | **Compression** | **Encryption** | **Metadata Support** | **Compatibility** |
+|------------|------------------|----------------|----------------------|-------------------|
+| RAW        | No               | No             | No                   | High              |
+| EWF        | Yes              | No             | Yes                  | Moderate          |
+| AFF        | Yes              | Yes            | Yes                  | High              |
+| Proprietary| Varies           | Varies         | Varies               | Low               |
+
+### Choosing the Right Format
+- **RAW Format:** Best for compatibility and simplicity.
+- **EWF Format:** Ideal for efficient storage and metadata retention.
+- **AFF Format:** Useful for secure storage and open-source investigations.
+
+---
+
+## Comparison Table
+| **Aspect** | **Live Acquisition** | **Dead Acquisition** |
+|------------|------------------------|------------------------|
+| **System State** | Powered On | Powered Off |
+| **Data Collected** | Volatile and Non-Volatile | Non-Volatile |
+| **Risk of Evidence Tampering** | High | Low |
+| **Process Complexity** | High | Moderate |
+| **Data Integrity** | Moderate | High |
+| **Tools Required** | Memory dump tools, network capture tools | Disk imaging tools, write blockers |
+
+---
+
+## Conclusion
+Choosing between live and dead acquisition depends on the nature and objectives of the investigation. Live acquisition is essential when volatile data is critical, while dead acquisition is preferred for preserving the integrity of non-volatile data. Similarly, selecting the right data acquisition format is key to efficient evidence collection, storage, and analysis. A well-planned approach and adherence to forensic best practices ensure reliable and admissible digital evidence.
+
+---
+
+## References
+1. Brian Carrier, "File System Forensic Analysis."
+2. Eoghan Casey, "Handbook of Digital Forensics and Investigation."
+3. NIST Special Publication 800-86, "Guide to Integrating Forensic Techniques into Incident Response."
+
+
+
