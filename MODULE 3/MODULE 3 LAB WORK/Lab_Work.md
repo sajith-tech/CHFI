@@ -33,7 +33,7 @@ The goal of this session is to help students understand how to analyze a forensi
 ### Step 2: Mount the Evidence Image
 1. Create a mount point for the image:
    ```bash
-   mkdir /mnt/forensic
+   sudo mkdir /mnt/forensic
    ```
 2. Mount the image to analyze the file system:
    ```bash
