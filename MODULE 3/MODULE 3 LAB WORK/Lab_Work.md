@@ -30,6 +30,56 @@ The goal of this session is to help students understand how to analyze a forensi
    sudo apt-get update
    sudo apt-get install sleuthkit autopsy
 
+   # Creating a Linux Disk Image (`linux-image.dd`) in Parrot OS (Virtual Machine)
+
+## **Steps to Create a Linux Disk Image**
+
+### 1. **Identify the Target Disk/Partition**
+   Open a terminal and list all storage devices:
+
+   ```bash
+   sudo fdisk -l
+   ```
+
+   Identify the virtual disk or partition you want to image, for example, `/dev/sda` or `/dev/sdb1`.
+
+### 2. **Create the Disk Image**
+   Use the `dd` command to copy the entire virtual disk/partition and create a disk image:
+
+   ```bash
+   sudo dd if=/dev/sdX of=~/linux-image.dd bs=4M status=progress
+   ```
+
+   **Explanation:**
+   - `if=/dev/sdX`: Replace `sdX` with your target virtual disk (e.g., `/dev/sda`).
+   - `of=~/linux-image.dd`: Specifies the output file location.
+   - `bs=4M`: Sets the block size to 4MB for faster processing.
+   - `status=progress`: Displays progress during the operation.
+
+### 3. **Verify the Image Creation**
+   Check the size and contents of the created disk image:
+
+   ```bash
+   ls -lh ~/linux-image.dd
+   ```
+
+### 4. **Optional: Compress the Image**
+   To save disk space, compress the image:
+
+   ```bash
+   gzip ~/linux-image.dd
+   ```
+
+## **Important Notes**
+- Ensure you have enough virtual storage space to store the image.
+- Be cautious when selecting the input file (`if=`). Choosing the wrong virtual disk can overwrite critical data.
+- Use root privileges (`sudo`) when working with `dd` to avoid permission errors.
+
+---
+
+This method is useful for creating forensic disk images or backups within Parrot OS virtual machines. Let me know if you need help examining or analyzing the created image.
+
+
 ### Step 2: Mount the Evidence Image
 1. Create a mount point for the image:
    ```bash
