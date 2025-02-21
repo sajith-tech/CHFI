@@ -14,8 +14,6 @@ Windows forensics is the process of collecting, analyzing, and preserving digita
   - Use tools like FTK Imager, Magnet RAM Capture.
   - Capture volatile data: RAM, network connections, running processes.
   
-  ![Live Data Acquisition](https://example.com/live-data-acquisition.png)
-  
 - **Dead data acquisition** (if the system is off):
   - Create a forensic disk image using tools like Autopsy, EnCase.
   - Verify image integrity using hashes (MD5, SHA-256).
