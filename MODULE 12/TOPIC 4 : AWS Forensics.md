@@ -1,71 +1,92 @@
-# AWS Fundamentals
 
-## 1. Introduction to AWS
-Amazon Web Services (AWS) is a cloud computing platform that provides on-demand computing resources, storage, databases, networking, and security services. It allows businesses and individuals to run applications and store data without maintaining physical hardware.
+# AWS Forensics
 
-## 2. Benefits of AWS
-- **Scalability**: Automatically scales resources based on demand.
-- **Cost-Effective**: Pay-as-you-go pricing model with no upfront cost.
-- **Security**: Advanced security features like encryption and IAM policies.
-- **Global Reach**: Data centers available worldwide for low-latency performance.
-- **Reliability**: High availability with backup and disaster recovery solutions.
+## 1. Introduction to AWS Forensics
+AWS forensics is the process of investigating security incidents in Amazon Web Services (AWS). It involves collecting and analyzing logs, snapshots, and system data to identify unauthorized access, data breaches, or malicious activities.
 
-## 3. Key AWS Services
-### a. Compute Services
-- **EC2 (Elastic Compute Cloud)**: Virtual servers in the cloud.
-- **Lambda**: Serverless computing to run code without provisioning servers.
-- **ECS (Elastic Container Service)**: Manages Docker containers.
-- **EKS (Elastic Kubernetes Service)**: Kubernetes-based container orchestration.
+## 2. Challenges in AWS Forensics
+- **Lack of Physical Access**: Cloud infrastructure is managed by AWS.
+- **Ephemeral Resources**: Instances and logs can be deleted quickly.
+- **Shared Responsibility Model**: AWS secures the cloud, but customers must secure their own data and configurations.
+- **Data Location Issues**: Data may be stored in multiple regions.
 
-### b. Storage Services
-- **S3 (Simple Storage Service)**: Scalable object storage.
-- **EBS (Elastic Block Store)**: Persistent storage for EC2 instances.
-- **Glacier**: Long-term data archival storage.
+## 3. Key AWS Forensics Artifacts
+### a. CloudTrail Logs (User Activity Logs)
+- Records all API calls and user actions in AWS.
+- Stored in S3 and can be analyzed using **Athena** or **CloudWatch**.
+- **Example Query in AWS Athena:**
+  ```sql
+  SELECT eventTime, eventName, userIdentity.arn, sourceIPAddress 
+  FROM cloudtrail_logs 
+  WHERE eventTime > '2025-01-01T00:00:00Z';
+  ```
 
-### c. Networking Services
-- **VPC (Virtual Private Cloud)**: Isolated cloud network for resources.
-- **Route 53**: Domain name system (DNS) service.
-- **CloudFront**: Content delivery network (CDN) for faster access.
+### b. CloudWatch Logs (System and Application Logs)
+- Stores logs from AWS services and applications.
+- Can be used to detect unauthorized access attempts and system errors.
+- **Example Command:**
+  ```bash
+  aws logs describe-log-groups
+  aws logs get-log-events --log-group-name "/var/log/apache2/access.log"
+  ```
 
-### d. Database Services
-- **RDS (Relational Database Service)**: Managed databases like MySQL, PostgreSQL, and SQL Server.
-- **DynamoDB**: NoSQL database for high-performance applications.
-- **ElastiCache**: In-memory caching for faster database performance.
+### c. AWS GuardDuty (Threat Detection)
+- Identifies suspicious activities like:
+  - Unusual API calls.
+  - Compromised IAM credentials.
+  - Malicious traffic.
 
-### e. Security & Identity
-- **IAM (Identity and Access Management)**: Controls user access and permissions.
-- **AWS Shield**: DDoS protection.
-- **AWS WAF (Web Application Firewall)**: Protects applications from web-based attacks.
+### d. S3 Access Logs
+- Tracks read/write activities on AWS S3 buckets.
+- Useful for detecting unauthorized access or data exfiltration.
+- **Example Analysis Command:**
+  ```bash
+  grep "s3.amazonaws.com" s3_access_logs.txt
+  ```
 
-### f. Monitoring & Management
-- **CloudWatch**: Monitors AWS resources and logs events.
-- **CloudTrail**: Tracks API calls and user activity.
-- **AWS Config**: Monitors and records AWS resource configurations.
+### e. EC2 Snapshots & Memory Forensics
+- Create **snapshots** of EC2 instances for forensic investigation.
+- Use tools like **Volatility** for RAM analysis.
+- **Creating a Snapshot:**
+  ```bash
+  aws ec2 create-snapshot --volume-id vol-1234567890abcdef0
+  ```
 
-## 4. AWS Pricing Model
-AWS follows a **Pay-as-you-go** pricing model with:
-- **On-Demand**: Pay for what you use.
-- **Reserved Instances**: Commit to long-term usage for discounts.
-- **Spot Instances**: Use spare capacity at lower costs.
-- **Free Tier**: Limited free usage for new users.
+### f. VPC Flow Logs (Network Traffic Analysis)
+- Captures inbound and outbound traffic in AWS.
+- Helps detect **port scanning**, **DDoS attacks**, and **data exfiltration**.
+- **Enable VPC Flow Logs:**
+  ```bash
+  aws ec2 create-flow-logs --resource-ids vpc-xxxxxx --resource-type VPC --traffic-type ALL --log-destination arn:aws:logs:region:account-id:log-group/vpc-flow-logs
+  ```
 
-## 5. AWS Global Infrastructure
-AWS operates in **Regions**, **Availability Zones (AZs)**, and **Edge Locations**:
-- **Regions**: Physical locations worldwide (e.g., US-East, EU-West).
-- **Availability Zones (AZs)**: Multiple isolated data centers within a region.
-- **Edge Locations**: Used by CloudFront to deliver content faster.
+## 4. AWS Forensics Investigation Process
+### a. Incident Detection
+- Enable **GuardDuty**, **CloudTrail**, and **VPC Flow Logs**.
+- Monitor logs for unusual activity (e.g., failed login attempts, privilege escalation).
 
-## 6. Getting Started with AWS
-### a. Creating an AWS Account
-1. Visit [AWS website](https://aws.amazon.com).
-2. Click **Create an AWS Account** and enter details.
-3. Choose a pricing plan (Free Tier available).
-4. Set up billing and IAM users for security.
+### b. Data Collection
+- Collect **CloudTrail logs, EC2 snapshots, S3 logs, and IAM activity logs**.
+- Dump memory of a running EC2 instance for forensic analysis.
 
-### b. Accessing AWS Services
-- **AWS Management Console** (Web UI)
-- **AWS CLI (Command Line Interface)**
-- **AWS SDKs (Software Development Kits) for Python, Java, etc.**
+### c. Data Analysis
+- **Use Athena** to analyze large logs.
+- **Use ELK Stack (Elasticsearch, Logstash, Kibana)** for visualization.
+- **Use Volatility** for RAM forensics.
 
-## 7. Conclusion
-AWS provides a powerful cloud platform for businesses, developers, and researchers. Understanding its fundamentals helps in deploying scalable, secure, and cost-effective applications.
+### d. Mitigation & Response
+- Revoke compromised IAM credentials.
+- Restrict network access using security groups.
+- Patch vulnerabilities and apply best security practices.
+
+## 5. AWS Security Best Practices
+- **Enable MFA (Multi-Factor Authentication)** for all accounts.
+- **Use IAM Roles** instead of access keys.
+- **Encrypt Data** using AWS KMS (Key Management Service).
+- **Enable Logging** for all AWS services.
+- **Regularly Audit IAM Permissions**.
+
+## 6. Conclusion
+AWS forensics helps in detecting and responding to security incidents. By leveraging logs, snapshots, and monitoring tools, security teams can identify and mitigate threats effectively.
+
+---
