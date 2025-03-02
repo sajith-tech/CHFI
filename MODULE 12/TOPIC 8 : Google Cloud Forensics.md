@@ -1,94 +1,93 @@
-# Microsoft Azure Forensics
 
-## 1. Introduction to Azure Forensics
-Microsoft Azure Forensics involves the **detection, collection, and analysis** of digital evidence in Azure cloud environments. It helps investigators **track security incidents**, detect unauthorized access, and respond to cyber threats.
+# Google Cloud Forensics
 
-## 2. Key Challenges in Azure Forensics
-- **Lack of Physical Access** – Investigators rely on logs and snapshots.
-- **Shared Responsibility Model** – Customers and Microsoft share security responsibilities.
-- **Dynamic Environment** – Virtual machines, containers, and serverless functions constantly change.
-- **Data Collection Limitations** – Some logs are retained for a limited time.
+## 1. Introduction to Google Cloud Forensics
+Google Cloud Forensics is the process of **detecting, collecting, analyzing, and preserving digital evidence** from Google Cloud Platform (GCP) environments. It is used for investigating security incidents, detecting unauthorized access, and responding to cyber threats.
 
-## 3. Azure Forensic Data Sources
-### a. **Azure Activity Logs**
-   - Tracks changes to Azure resources.
-   - Useful for **detecting unauthorized access or modifications**.
-   - Collect logs using:
+## 2. Challenges in Google Cloud Forensics
+- **Limited Log Retention** – Some logs are not stored indefinitely.
+- **Ephemeral Resources** – Cloud instances and containers may not persist.
+- **Data Collection Constraints** – Cloud-based evidence requires proper access permissions.
+- **Shared Responsibility Model** – Security is shared between Google and the user.
+
+## 3. Key Forensic Data Sources in GCP
+### a. **Google Cloud Audit Logs**
+   - Tracks activity across GCP services.
+   - Useful for **detecting unauthorized access or changes**.
+   - Query logs using:
      ```bash
-     az monitor activity-log list --output table
+     gcloud logging read "logName:cloudaudit.googleapis.com%2Factivity" --format json
      ```
 
-### b. **Azure Security Center Alerts**
-   - Provides **real-time threat detection**.
-   - Use **Azure Sentinel** for incident response.
-   - View security alerts:
+### b. **Google Cloud Identity and Access Management (IAM) Logs**
+   - Records user authentication and access attempts.
+   - Detects **privilege escalation or unauthorized API calls**.
+   - View IAM policies:
      ```bash
-     az security alert list --output table
+     gcloud projects get-iam-policy my-project
      ```
 
-### c. **Azure Log Analytics**
-   - Stores logs from multiple sources.
-   - Useful for **event correlation and timeline analysis**.
-   - Query logs using Kusto Query Language (KQL):
-     ```kql
-     SecurityEvent
-     | where TimeGenerated > ago(24h)
-     | where EventID == 4625 // Failed login attempts
-     ```
-
-### d. **Azure Network Security Group (NSG) Logs**
-   - Logs inbound and outbound network traffic.
-   - Helps **detect malicious IP addresses or unusual activity**.
-   - Enable NSG logs:
-     ```bash
-     az network nsg flow-log create --nsg-name MyNSG --resource-group MyResourceGroup --storage-account MyStorage
-     ```
-
-### e. **Azure Virtual Machine (VM) Disk Forensics**
-   - Capture VM disk snapshots for analysis.
-   - Use **Azure Disk Forensics** to extract evidence:
-     ```bash
-     az snapshot create --resource-group MyResourceGroup --source MyVMOSDisk --name VMDiskSnapshot
-     ```
-
-### f. **Azure Storage Account Logs**
+### c. **Google Cloud Storage Logs**
    - Tracks file uploads, downloads, and modifications.
-   - Detects **data exfiltration or insider threats**.
-   - View logs in Azure Storage Explorer.
-
-## 4. Investigating Common Attacks in Azure
-### a. **Unauthorized Access & Privilege Escalation**
-   - Investigate failed logins:
-     ```kql
-     SigninLogs
-     | where ResultType == "50053"
+   - Helps **detect data exfiltration or insider threats**.
+   - Enable logging:
+     ```bash
+     gcloud storage buckets update my-bucket --log-bucket my-log-bucket
      ```
-   - Review Azure AD sign-in logs.
+
+### d. **Google Cloud Compute Engine (GCE) Disk Snapshots**
+   - Capturing VM disk snapshots for forensic analysis.
+   - Helps in **malware and ransomware investigations**.
+   - Create a snapshot:
+     ```bash
+     gcloud compute disks snapshot my-disk --snapshot-names forensic-snapshot
+     ```
+
+### e. **Google VPC Flow Logs**
+   - Monitors network traffic in GCP.
+   - Helps detect **malicious IPs, data exfiltration, or C2 communication**.
+   - Enable flow logs:
+     ```bash
+     gcloud compute networks subnets update my-subnet --enable-flow-logs
+     ```
+
+### f. **Google Cloud Security Command Center (SCC)**
+   - Provides security alerts for **threat detection**.
+   - Helps in **incident response and attack investigation**.
+
+## 4. Investigating Common Attacks in GCP
+### a. **Unauthorized Access & Privilege Escalation**
+   - Analyze IAM activity logs for **suspicious privilege modifications**.
+   - Detect failed authentication attempts:
+     ```bash
+     gcloud logging read 'protoPayload.methodName="google.iam.v1.SetIamPolicy"' --format json
+     ```
 
 ### b. **Data Exfiltration**
-   - Detect suspicious file transfers from storage accounts.
-   - Analyze **Azure Storage Analytics Logs**.
+   - Check **Cloud Storage logs** for unusual data transfers.
+   - Investigate network logs for high outbound traffic.
 
-### c. **Malware & Ransomware Attacks**
-   - Examine **Azure Defender** alerts for malware activity.
-   - Investigate compromised VMs by analyzing memory dumps.
+### c. **Brute Force & Password Spraying Attacks**
+   - Analyze IAM logs for repeated failed login attempts.
+   - Use Google Security Command Center alerts.
 
-### d. **Brute Force Attacks**
-   - Check repeated failed login attempts in Azure AD logs.
-   - Use **Microsoft Sentinel** for automated alerting.
+### d. **Malware & Ransomware Attacks**
+   - Capture and analyze **VM snapshots** for signs of malware.
+   - Investigate security alerts from **Google Cloud Security Scanner**.
 
-## 5. Collecting Evidence in Azure
-- **Use Azure CLI or PowerShell** to export logs.
-- **Take snapshots of virtual disks** for forensic analysis.
-- **Enable auditing for Azure SQL databases** to track changes.
+## 5. Collecting Evidence in Google Cloud
+- **Export logs to BigQuery** for deep analysis:
+  ```bash
+  gcloud logging sinks create my-sink bigquery.googleapis.com/projects/my-project/datasets/my-dataset
+  ```
+- **Capture snapshots of Compute Engine disks** for forensic analysis.
+- **Use Google Takeout** to extract user account data for investigations.
 
-## 6. Best Practices for Azure Forensics
-- **Enable logging & monitoring** (Azure Security Center, Azure Sentinel).
-- **Regularly collect & store forensic data** in an external system.
-- **Implement incident response plans** tailored for cloud environments.
-- **Use automation tools** for real-time detection and response.
+## 6. Best Practices for Google Cloud Forensics
+- **Enable and retain logs** in Cloud Logging.
+- **Use Google Cloud Security Command Center** for real-time threat detection.
+- **Regularly monitor IAM permissions** to prevent privilege abuse.
+- **Automate threat detection** using **Chronicle Security Operations**.
 
 ## 7. Conclusion
-Azure Forensics is essential for **investigating cyber incidents** in cloud environments. By leveraging **logs, security alerts, and forensic tools**, investigators can effectively detect and respond to threats in Azure.
-
----
+Google Cloud Forensics is essential for **incident response and security investigations** in cloud environments. By leveraging **logs, security tools, and forensic techniques**, investigators can effectively detect, analyze, and respond to cyber threats in GCP.
